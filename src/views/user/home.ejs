@@ -1,0 +1,159 @@
+<%-include('../../views/partials/userPartials/head')%>
+<%-include('../../views/partials/userPartials/header')%>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="mb-4">Together We Can Build a Drug-Free Community</h1>
+                    <p class="lead mb-5">Our platform empowers communities to anonymously report drug-related activities, educate citizens, and collaborate with authorities to create safer environments, especially around schools.</p>
+                    <a href="/report" class="report-btn btn btn-lg">Report an Incident</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2>How Our Platform Works</h2>
+                    <p class="lead">Working together to protect our communities and youth</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card p-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-user-secret feature-icon"></i>
+                        </div>
+                        <h3 class="text-center mb-3">Anonymous Reporting</h3>
+                        <p>Report drug-related activities without revealing your identity. Attach images, videos, or location details securely.</p>
+                        <div class="text-center mt-4">
+                            <a href="/report" class="btn btn-outline-primary">Report Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card p-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-book feature-icon"></i>
+                        </div>
+                        <h3 class="text-center mb-3">Education & Awareness</h3>
+                        <p>Access blogs, videos, and interactive quizzes to learn about drug abuse prevention and how to keep your community safe.</p>
+                        <div class="text-center mt-4">
+                            <a href="/education" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card p-4">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-hands-helping feature-icon"></i>
+                        </div>
+                        <h3 class="text-center mb-3">Community Support</h3>
+                        <p>Find helplines, treatment centers, and counseling services for individuals and families affected by drug abuse.</p>
+                        <div class="text-center mt-4">
+                            <a href="/support" class="btn btn-outline-primary">Get Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <p class="stat-number" id="reportsCounter">0</p>
+                    <p>Reports Submitted</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <p class="stat-number" id="schoolsCounter">0</p>
+                    <p>Schools Protected</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="stat-number" id="communitiesCounter">0</p>
+                    <p>Communities Improved</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Preview -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2>Identify Hotspots in Your Area</h2>
+                    <p class="lead">Our interactive map helps visualize areas with frequent drug-related reports, enabling targeted community action and law enforcement response.</p>
+                    <p>The map is updated in real-time as new reports come in, giving community members and authorities the information they need to make informed decisions about where to focus prevention efforts.</p>
+                    <a href="/map" class="btn btn-primary mt-3">View Full Map</a>
+                </div>
+                <!-- <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <img src="/images/map-preview.jpg" alt="Interactive Map Preview" class="img-fluid rounded">
+                        <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                            <a href="/map" class="btn btn-lg btn-primary">
+                                <i class="fas fa-map-marked-alt me-2"></i> Interactive Map
+                            </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2>Success Stories</h2>
+                    <p class="lead">See how our platform has made a difference</p>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Use EJS to loop through testimonials -->
+                <% const testimonials = [
+                    { text: "Thanks to this platform, we were able to identify and address drug activities near our school. The anonymous reporting made it safe for everyone to participate.", author: "School Principal" },
+                    { text: "As a parent, I feel more empowered knowing there's a way to report suspicious activities without putting my family at risk. The educational resources have also been invaluable.", author: "Community Parent" },
+                    { text: "The platform has strengthened the relationship between law enforcement and our community. We're now working together more effectively to keep our neighborhoods safe.", author: "Local Police Officer" }
+                ]; %>
+                
+                <% testimonials.forEach(testimonial => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text mb-4"><%= testimonial.text %></p>
+                        <div class="d-flex align-items-center">
+                            <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="ms-3">
+                                <p class="mb-0 fw-bold"><%= testimonial.author %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-light text-dark text-center">
+        <div class="container">
+            <h2 class="mb-4">Ready to Make a Difference?</h2>
+            <p class="lead mb-4">Join our mission to create drug-free communities. Every report matters, and your anonymity is guaranteed.</p>
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3">
+                <a href="/report" class="btn btn-danger btn-lg">Report an Incident</a>
+                <a href="/volunteer" class="btn btn-success btn-lg">Volunteer With Us</a>
+            </div>
+        </div>
+    </section>
+    <%-include('../../views/partials/userPartials/footer')%>
+</body>
+</html>

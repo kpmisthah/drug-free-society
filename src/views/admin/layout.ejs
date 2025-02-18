@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin/layout.css">
+  <!-- Bootstrap or your preferred CSS framework -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="admin-container">
+    <%- include('../../views/partials/adminPartials/sidebar') %>
+    <main class="admin-content">
+      <%- include('../../views/partials/adminPartials/header') %>
+      <div class="admin-main-content">
+       
+<div class="dashboard-container">
+  <h1>Dashboard Overview</h1>
+  
+  <div class="stats-cards">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Reports</h5>
+        <p class="card-text"><%= totalReports %></p>
+        <p class="text-muted"><i class="fas fa-arrow-up"></i> 12% from last week</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Pending Reports</h5>
+        <p class="card-text"><%= pendingReports %></p>
+        <p class="text-muted"><i class="fas fa-arrow-down"></i> 5% from last week</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Active Users</h5>
+        <p class="card-text"><%= activeUsers %></p>
+        <p class="text-muted"><i class="fas fa-arrow-up"></i> 8% from last week</p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Educational Content Views</h5>
+        <p class="card-text"><%= contentViews %></p>
+        <p class="text-muted"><i class="fas fa-arrow-up"></i> 15% from last week</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Report Activity</h5>
+          <canvas id="reportChart"></canvas>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Hotspot Map</h5>
+          <div id="hotspotMap" style="height: 300px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Recent Reports</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Location</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% recentReports.forEach(report => { %>
+                <tr>
+                  <td><%= report.id %></td>
+                  <td><%= report.date %></td>
+                  <td><%= report.location %></td>
+                  <td><%= report.type %></td>
+                  <td><span class="badge bg-<%= report.statusColor %>"><%= report.status %></span></td>
+                  <td><a href="/admin/reports/<%= report.id %>" class="btn btn-sm btn-primary">View</a></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <a href="/admin/reports" class="btn btn-outline-primary">View All Reports</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/admin.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<%-include('../../views/partials/userPartials/head')%>
+<%-include('../../views/partials/userPartials/header')%>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Report an Incident</h1>
+                <div class="privacy-badge">
+                    <i class="fas fa-shield-alt" style="margin-right: 8px;"></i> 
+                    Your report is anonymous
+                </div>
+            </div>
+            
+            <div class="card-body" id="reportForm">
+                <form id="incidentForm">
+                    <div class="form-group">
+                        <label for="incidentType">Type of Incident</label>
+                        <select id="incidentType" required>
+                            <option value="" disabled selected>Select incident type</option>
+                            <option value="selling">Drug Selling Activity</option>
+                            <option value="suspicious">Suspicious Individuals</option>
+                            <option value="gathering">Unusual Gathering</option>
+                            <option value="paraphernalia">Drug Paraphernalia Found</option>
+                            <option value="other">Other (please specify)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="otherIncidentGroup" style="display: none;">
+                        <label for="otherIncident">Please specify the incident</label>
+                        <input type="text" id="otherIncident" placeholder="Describe the type of incident">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <input type="text" id="location" placeholder="Provide specific address or landmark" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="incidentDate">Date of Incident</label>
+                        <input type="date" id="incidentDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="incidentTime">Approximate Time</label>
+                        <input type="time" id="incidentTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Provide as much detail as possible about what you witnessed. This information will help authorities respond appropriately." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Supporting Media (Optional)</label>
+                        <div class="media-upload" id="mediaUpload">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span class="upload-text">Click or drag files to upload</span>
+                            <span class="upload-subtext">Supports: JPG, PNG, MP4 (max 20MB)</span>
+                            <input type="file" id="mediaInput" style="display: none;" multiple accept="image/*,video/*">
+                        </div>
+                        <div id="uploadedFiles"></div>
+                    </div>
+                    
+                    <div class="security-info">
+                        <i class="fas fa-lock"></i>
+                        <span>Your identity is protected. All submissions are encrypted and anonymous by default.</span>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 2rem;">
+                        <button type="submit" class="btn btn-primary btn-block">Submit Report</button>
+                    </div>
+                </form>
+                
+                <div class="progress-section">
+                    <h3><i class="fas fa-tasks"></i> Track Your Report</h3>
+                    <p>After submission, you'll receive a unique tracking ID. Use it to check the status of your report while remaining anonymous.</p>
+                    
+                    <div class="progress-steps">
+                        <div class="step active">
+                            <div class="step-circle">1</div>
+                            <div class="step-line"></div>
+                            <div class="step-title">Submitted</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-circle">2</div>
+                            <div class="step-line"></div>
+                            <div class="step-title">Under Review</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-circle">3</div>
+                            <div class="step-line"></div>
+                            <div class="step-title">Investigating</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-circle">4</div>
+                            <div class="step-title">Resolved</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="reportConfirmation">
+                <i class="fas fa-check-circle"></i>
+                <h2>Thank You for Your Report</h2>
+                <p>We've received your information and are taking appropriate action. Your contribution helps keep our community safe.</p>
+                <p>Your anonymous tracking ID:</p>
+                <div id="trackingId">RPT-25863971</div>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem;">Save this ID to check on the status of your report in the future.</p>
+                <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="resetForm()">Submit Another Report</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const incidentForm = document.getElementById('incidentForm');
+            const reportForm = document.getElementById('reportForm');
+            const reportConfirmation = document.getElementById('reportConfirmation');
+            const mediaUpload = document.getElementById('mediaUpload');
+            const mediaInput = document.getElementById('mediaInput');
+            const uploadedFiles = document.getElementById('uploadedFiles');
+            const incidentType = document.getElementById('incidentType');
+            const otherIncidentGroup = document.getElementById('otherIncidentGroup');
+            
+            // Handle incident type selection
+            incidentType.addEventListener('change', function() {
+                if (this.value === 'other') {
+                    otherIncidentGroup.style.display = 'block';
+                } else {
+                    otherIncidentGroup.style.display = 'none';
+                }
+            });
+            
+            // Handle media upload click
+            mediaUpload.addEventListener('click', function() {
+                mediaInput.click();
+            });
+            
+            // Handle file selection
+            mediaInput.addEventListener('change', function() {
+                const files = Array.from(this.files);
+                
+                uploadedFiles.innerHTML = '';
+                
+                files.forEach(file => {
+                    const fileSize = (file.size / (1024 * 1024)).toFixed(2); // Convert to MB
+                    
+                    if (fileSize > 20) {
+                        alert(`File ${file.name} exceeds the 20MB limit.`);
+                        return;
+                    }
+                    
+                    const fileItem = document.createElement('div');
+                    fileItem.style.display = 'flex';
+                    fileItem.style.alignItems = 'center';
+                    fileItem.style.marginTop = '10px';
+                    fileItem.style.padding = '8px';
+                    fileItem.style.backgroundColor = 'var(--light-gray)';
+                    fileItem.style.borderRadius = '5px';
+                    
+                    let icon = 'fa-file';
+                    if (file.type.startsWith('image/')) {
+                        icon = 'fa-file-image';
+                    } else if (file.type.startsWith('video/')) {
+                        icon = 'fa-file-video';
+                    }
+                    
+                    fileItem.innerHTML = `
+                        <i class="fas ${icon}" style="margin-right: 10px; color: var(--primary-color);"></i>
+                        <div style="flex-grow: 1;">
+                            <div style="font-weight: 600;">${file.name}</div>
+                            <div style="font-size: 0.8rem; color: var(--dark-gray);">${fileSize} MB</div>
+                        </div>
+                        <i class="fas fa-times" style="cursor: pointer; color: var(--dark-gray);"
+                           onclick="this.parentNode.remove()"></i>
+                    `;
+                    
+                    uploadedFiles.appendChild(fileItem);
+                });
+            });
+            
+            // Handle form submission
+            incidentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate submission
+                reportForm.style.display = 'none';
+                reportConfirmation.style.display = 'block';
+                
+                // Generate random tracking ID (in real implementation, this would come from the server)
+                const randomId = Math.floor(Math.random() * 90000000) + 10000000;
+                document.getElementById('trackingId').textContent = `RPT-${randomId}`;
+            });
+        });
+        
+        // Reset form function
+        function resetForm() {
+            document.getElementById('incidentForm').reset();
+            document.getElementById('uploadedFiles').innerHTML = '';
+            document.getElementById('otherIncidentGroup').style.display = 'none';
+            document.getElementById('reportForm').style.display = 'block';
+            document.getElementById('reportConfirmation').style.display = 'none';
+        }
+    </script>
+    <%-include('../../views/partials/userPartials/footer')%>
+</body>
+</html>

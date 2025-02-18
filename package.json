@@ -1,0 +1,25 @@
+{
+  "name": "drug-free-society",
+  "version": "1.0.0",
+  "description": "This platform provides a secure way for users to anonymously report the sale of illegal drugs, particularly those being sold to minors, as well as identify individuals involved in such activities.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.10.1",
+    "nocache": "^4.0.0",
+    "nodemailer": "^6.10.0"
+  }
+}

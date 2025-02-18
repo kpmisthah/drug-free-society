@@ -1,0 +1,131 @@
+:root {
+    --primary-color: #3a5a91;
+    --secondary-color: #f8a51b;
+    --dark-color: #333;
+    --light-color: #f4f4f4;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+.hero-section {
+    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('/images/community-hero.jpg'); */
+    background-size: cover;
+    background-position: center;
+    color: black;
+    padding: 7rem 0;
+    text-align: center;
+}
+
+.main-navbar {
+    background-color: white
+}
+
+.nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+.report-btn {
+    background-color: var(--danger-color);
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.report-btn:hover {
+    background-color: #bd2130;
+    transform: scale(1.05);
+}
+.report-btn {
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.report-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 991px) {
+    .ms-lg-3 {
+        margin-top: 10px;
+    }
+}
+.feature-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.stats-section {
+    background-color: white;
+    color: black;
+    padding: 4rem 0;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.testimonial-text {
+    font-style: italic;
+}
+
+.footer {
+    background-color: var(--dark-color);
+    color: white;
+    padding: 3rem 0;
+}
+
+.footer-link {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-link:hover {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 0;
+    }
+    .hero-section h1 {
+        font-size: 1.8rem;
+    }
+    .stat-number {
+        font-size: 2rem;
+    }
+}

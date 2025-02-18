@@ -1,0 +1,85 @@
+<%-include('../../views/partials/userPartials/head')%>
+<%-include('../../views/partials/userPartials/header')%>
+    <div class="community-header">
+        <h1>Our Community</h1>
+        <p>Join us in building a stronger, drug-free community</p>
+    </div>
+
+    <div class="container">
+        <div class="community-stats">
+            <% data.stats.forEach(function(stat) { %>
+                <div class="stat-box">
+                    <div class="stat-number"><%= stat.number %></div>
+                    <div><%= stat.label %></div>
+                </div>
+            <% }); %>
+        </div>
+
+        <section class="events-section">
+            <h2 class="section-title">
+                <i class="fas fa-calendar-alt"></i>
+                Upcoming Events
+            </h2>
+            <% data.events.forEach(function(event) { %>
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-day"><%= event.day %></div>
+                        <div><%= event.month %></div>
+                    </div>
+                    <div class="event-info">
+                        <h3><%= event.title %></h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <%= event.location %></p>
+                        <p><%= event.description %></p>
+                    </div>
+                    <div class="event-action">
+                        <a href="/events/<%= event.id %>" class="btn btn-primary">Join Event</a>
+                    </div>
+                </div>
+            <% }); %>
+        </section>
+
+        <section class="forum-section">
+            <h2 class="section-title">
+                <i class="fas fa-comments"></i>
+                Discussion Forums
+            </h2>
+            <% data.forums.forEach(function(topic) { %>
+                <div class="topic-card">
+                    <div class="topic-header">
+                        <i class="<%= topic.icon %> topic-icon"></i>
+                        <div>
+                            <h3><%= topic.title %></h3>
+                            <div class="topic-stats">
+                                <span><i class="fas fa-user"></i> <%= topic.members %> members</span>
+                                <span><i class="fas fa-comments"></i> <%= topic.posts %> posts</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p><%= topic.description %></p>
+                    <a href="/forums/<%= topic.id %>" class="btn btn-primary">Join Discussion</a>
+                </div>
+            <% }); %>
+        </section>
+
+        <section class="members-section">
+            <h2 class="section-title">
+                <i class="fas fa-users"></i>
+                Active Members
+            </h2>
+            <div class="members-grid">
+                <% data.members.forEach(function(member) { %>
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3><%= member.name %></h3>
+                        <p><%= member.role %></p>
+                        <p><small>Member since <%= member.joinDate %></small></p>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </div>
+    <%-include('../../views/partials/userPartials/footer')%>
+</body>
+</html>

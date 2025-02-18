@@ -1,0 +1,137 @@
+<%-include('../../views/partials/userPartials/head')%>
+<%-include('../../views/partials/userPartials/header')%>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-12 text-blue-800">Educational Resources</h1>
+
+        <!-- Navigation Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div onclick="showTab('blog')" class="nav-card active bg-white rounded-xl shadow-md p-6 border-2 border-transparent">
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-book-open text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold">Blog Posts</h3>
+                    <p class="text-sm text-gray-600 mt-2">Read informative articles</p>
+                </div>
+            </div>
+
+            <div onclick="showTab('videos')" class="nav-card bg-white rounded-xl shadow-md p-6 border-2 border-transparent">
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-video text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold">Videos</h3>
+                    <p class="text-sm text-gray-600 mt-2">Watch educational content</p>
+                </div>
+            </div>
+
+            <div onclick="showTab('quizzes')" class="nav-card bg-white rounded-xl shadow-md p-6 border-2 border-transparent">
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-brain text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold">Quizzes</h3>
+                    <p class="text-sm text-gray-600 mt-2">Test your knowledge</p>
+                </div>
+            </div>
+
+            <div onclick="showTab('infographics')" class="nav-card bg-white rounded-xl shadow-md p-6 border-2 border-transparent">
+                <div class="flex flex-col items-center text-center">
+                    <i class="fas fa-chart-bar text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold">Infographics</h3>
+                    <p class="text-sm text-gray-600 mt-2">Visual statistics</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Blog Content -->
+        <div id="blog" class="tab-content active">
+            <div class="grid md:grid-cols-2 gap-8">
+                <% blogs.forEach(blog => { %>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2"><%= blog.title %></h3>
+                            <p class="text-gray-600 mb-4"><%= blog.excerpt %></p>
+                            <a href="/blog/<%= blog.id %>" class="text-blue-600 hover:underline">Read More →</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Videos Content -->
+        <div id="videos" class="tab-content">
+            <div class="grid md:grid-cols-2 gap-8">
+                <% videos.forEach(video => { %>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe src="<%= video.embedUrl %>" frameborder="0" allowfullscreen 
+                                class="w-full h-full"></iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2"><%= video.title %></h3>
+                            <p class="text-gray-600"><%= video.description %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Quizzes Content -->
+        <div id="quizzes" class="tab-content">
+            <div class="max-w-2xl mx-auto">
+                <% quizzes.forEach(quiz => { %>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                        <h3 class="text-xl font-semibold mb-4"><%= quiz.question %></h3>
+                        <div class="space-y-3">
+                            <% quiz.options.forEach((option, index) => { %>
+                                <button class="w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-gray-50">
+                                    <%= option %>
+                                </button>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Infographics Content -->
+        <div id="infographics" class="tab-content">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <% infographics.forEach(infographic => { %>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="<%= infographic.imageUrl %>" alt="<%= infographic.title %>" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold mb-2"><%= infographic.title %></h3>
+                            <p class="text-gray-600"><%= infographic.description %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            // Remove active class from all nav cards
+            document.querySelectorAll('.nav-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to selected nav card
+            const selectedNav = document.querySelector(`.nav-card:nth-child(${
+                {'blog': 1, 'videos': 2, 'quizzes': 3, 'infographics': 4}[tabId]
+            })`);
+            if (selectedNav) {
+                selectedNav.classList.add('active');
+            }
+            
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            const selectedTab = document.getElementById(tabId);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+        }
+    </script>
+        <%-include('../../views/partials/userPartials/footer')%>
+</body>
+</html>
