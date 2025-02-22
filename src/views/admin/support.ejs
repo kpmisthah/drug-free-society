@@ -1,0 +1,118 @@
+<!-- admin-support.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Support Management</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <!-- Admin Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4">
+                <h1 class="text-3xl font-bold text-gray-900">Support Resources Management</h1>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <!-- Emergency Numbers Section -->
+            <div class="bg-white shadow rounded-lg mb-6">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-xl font-semibold mb-4">Emergency Numbers Management</h2>
+                    <div class="space-y-4">
+                        <!-- Add New Emergency Number -->
+                        <form class="border-b pb-4">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <input type="text" placeholder="Service Name" 
+                                    class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <input type="text" placeholder="Phone Number" 
+                                    class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                                <button type="submit" 
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                    Add Number
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Emergency Numbers List -->
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Service</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Number</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">National Emergency</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">911</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                            <button class="text-red-600 hover:text-red-900">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Centers Section -->
+            <div class="bg-white shadow rounded-lg mb-6">
+                <div class="px-4 py-5 sm:p-6">
+                    <h2 class="text-xl font-semibold mb-4">Treatment Centers Management</h2>
+                    <!-- Add New Center Form -->
+                    <form class="border-b pb-4 mb-4">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <input type="text" placeholder="Center Name" 
+                                class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <input type="text" placeholder="Address" 
+                                class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <input type="text" placeholder="Phone" 
+                                class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <input type="text" placeholder="Operating Hours" 
+                                class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                        </div>
+                        <button type="submit" 
+                            class="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                            Add Center
+                        </button>
+                    </form>
+
+                    <!-- Centers List -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hours</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">City Recovery Center</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">123 Main St</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">555-0123</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">24/7</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <button class="text-blue-600 hover:text-blue-900 mr-3">Edit</button>
+                                        <button class="text-red-600 hover:text-red-900">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

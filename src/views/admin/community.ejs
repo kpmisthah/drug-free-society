@@ -1,0 +1,181 @@
+<!-- views/community.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community | Drug Abuse Prevention</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="max-w-full mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="/logo.png" alt="Logo" class="h-8 w-8 mr-2">
+                    <span class="text-xl font-bold text-blue-600">DrugFree Community</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search..." 
+                               class="w-64 px-4 py-2 rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <button class="p-2 rounded-full hover:bg-gray-100">
+                            <i class="fas fa-bell text-gray-600"></i>
+                        </button>
+                        <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <%- include('../../views/partials/adminPartials/sidebar') %>
+            <!-- Quick Stats -->
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                <h3 class="text-sm font-semibold text-blue-800 mb-3">Community Stats</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Active Members</span>
+                        <span class="text-sm font-bold">1,200+</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-sm text-gray-600">Events Today</span>
+                        <span class="text-sm font-bold">5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 pt-16 min-h-screen">
+        <div class="p-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-800">Community Hub</h1>
+                <p class="text-gray-600 mt-2">Connect with others and make a difference</p>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Join Event</h3>
+                        <i class="fas fa-arrow-right text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-600">Find and participate in community events</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Start Discussion</h3>
+                        <i class="fas fa-arrow-right text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-600">Create or join forum discussions</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Volunteer</h3>
+                        <i class="fas fa-arrow-right text-blue-500"></i>
+                    </div>
+                    <p class="text-gray-600">Find opportunities to help others</p>
+                </div>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Upcoming Events -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Upcoming Events</h2>
+                        <a href="/events" class="text-blue-500 hover:text-blue-700">View All</a>
+                    </div>
+                    <div class="space-y-4">
+                        <% events.forEach(function(event) { %>
+                            <div class="flex items-center p-4 border rounded-lg hover:bg-gray-50">
+                                <div class="bg-blue-100 rounded-lg p-3 mr-4">
+                                    <i class="fas fa-calendar text-blue-500"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold"><%= event.title %></h3>
+                                    <p class="text-sm text-gray-600"><%= event.date %></p>
+                                </div>
+                                <button class="ml-auto bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                                    Join
+                                </button>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+
+                <!-- Active Discussions -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">Active Discussions</h2>
+                        <a href="/forums" class="text-blue-500 hover:text-blue-700">View All</a>
+                    </div>
+                    <div class="space-y-4">
+                        <% forums.forEach(function(forum) { %>
+                            <div class="flex items-center p-4 border rounded-lg hover:bg-gray-50">
+                                <div class="bg-green-100 rounded-lg p-3 mr-4">
+                                    <i class="fas fa-comments text-green-500"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold"><%= forum.title %></h3>
+                                    <p class="text-sm text-gray-600"><%= forum.activeDiscussions %> active discussions</p>
+                                </div>
+                                <button class="ml-auto bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+                                    Join
+                                </button>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volunteer Opportunities -->
+            <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-bold">Volunteer Opportunities</h2>
+                    <a href="/volunteer" class="text-blue-500 hover:text-blue-700">View All</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <% opportunities.forEach(function(opportunity) { %>
+                        <div class="border rounded-lg p-4 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-100 rounded-lg p-3 mr-4">
+                                    <i class="fas fa-heart text-purple-500"></i>
+                                </div>
+                                <h3 class="font-semibold"><%= opportunity.title %></h3>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-4"><%= opportunity.positions %> positions available</p>
+                            <button class="w-full bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600">
+                                Apply Now
+                            </button>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add active class to current page in sidebar
+            const currentPath = window.location.pathname;
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+            sidebarLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

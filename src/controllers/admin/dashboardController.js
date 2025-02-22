@@ -1,6 +1,6 @@
-const loadLayout = async(req,res)=>{
+const loadDashboard = async(req,res)=>{
     try {
-        return res.render('admin/layout', {
+        return res.render('admin/dashboard', {
             totalReports: 100,
             pendingReports: 20,
             activeUsers: 500,
@@ -16,4 +16,4 @@ const loadLayout = async(req,res)=>{
         
     }
 }
-export{loadLayout}
+export{loadDashboard}
