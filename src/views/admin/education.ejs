@@ -1,301 +1,354 @@
 <!-- EJS template for Education Content Management Dashboard -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Education Content Management | Drug Awareness Platform</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin/education.css">
-</head>
-<body>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/admin/education.css" />
+  </head>
+  <body>
     <div class="dashboard-container">
-        <%- include('../../views/partials/adminPartials/sidebar') %>
+      <%- include('../../views/partials/adminPartials/sidebar') %>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <div class="header">
-                <h1 class="page-title">Education Content Management</h1>
-                <div class="user-profile">
-                    <span>WelcomeMisthah</span>
-                    <div class="user-avatar">
-                        Misthah 
-                    </div>
-                </div>
+      <!-- Main Content Area -->
+      <main class="main-content">
+        <div class="header">
+          <h1 class="page-title">Education Content Management</h1>
+          <div class="user-profile">
+            <span>WelcomeMisthah</span>
+            <div class="user-avatar">Misthah</div>
+          </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value"><%= stats.blogCount %></div>
+                <div class="stat-label">Blog Posts</div>
+              </div>
+              <div class="stat-icon blogs-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
             </div>
-
-            <!-- Statistics Cards -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <div class="stat-value"><%= stats.blogCount %></div>
-                            <div class="stat-label">Blog Posts</div>
-                        </div>
-                        <div class="stat-icon blogs-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
-                    </div>
-                    <div><%= stats.publishedBlogs %> published, <%= stats.draftBlogs %> drafts</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <div class="stat-value"><%= stats.videoCount %></div>
-                            <div class="stat-label">Videos</div>
-                        </div>
-                        <div class="stat-icon videos-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                    </div>
-                    <div><%= stats.videoViews %> total views this month</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <div class="stat-value"><%= stats.quizCount %></div>
-                            <div class="stat-label">Quizzes</div>
-                        </div>
-                        <div class="stat-icon quizzes-icon">
-                            <i class="fas fa-question-circle"></i>
-                        </div>
-                    </div>
-                    <div><%= stats.quizCompletions %> completions this month</div>
-                </div>
-                
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <div class="stat-value"><%= stats.engagementRate %>%</div>
-                            <div class="stat-label">Engagement Rate</div>
-                        </div>
-                        <div class="stat-icon engagement-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                    </div>
-                    <div><%= stats.engagementChange %>% from last month</div>
-                </div>
+            <div>
+              <%= stats.publishedBlogs %> published, <%= stats.draftBlogs %>
+              drafts
             </div>
+          </div>
 
-            <!-- Blog Management Section -->
-            <section class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Blog Posts</h2>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Create New Post
-                    </button>
-                </div>
-                
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Published Date</th>
-                            <th>Views</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% blogPosts.forEach(post => { %>
-                        <tr>
-                            <td><%= post.title %></td>
-                            <td><%= post.category %></td>
-                            <td>
-                                <span class="status-pill status-<%= post.status.toLowerCase() %>">
-                                    <%= post.status %>
-                                </span>
-                            </td>
-                            <td><%= post.publishedDate || 'N/A' %></td>
-                            <td><%= post.views %></td>
-                            <td class="action-cell">
-                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-                
-                <div class="pagination">
-                    <div class="page-item"><i class="fas fa-chevron-left"></i></div>
-                    <div class="page-item active">1</div>
-                    <div class="page-item">2</div>
-                    <div class="page-item">3</div>
-                    <div class="page-item"><i class="fas fa-chevron-right"></i></div>
-                </div>
-            </section>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value"><%= stats.videoCount %></div>
+                <div class="stat-label">Videos</div>
+              </div>
+              <div class="stat-icon videos-icon">
+                <i class="fas fa-video"></i>
+              </div>
+            </div>
+            <div><%= stats.videoViews %> total views this month</div>
+          </div>
 
-            <!-- Video Management Section -->
-            <section class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Educational Videos</h2>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-upload"></i> Upload New Video
-                    </button>
-                </div>
-                
-                <div class="upload-area" id="videoUpload">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <h3>Drag & Drop Videos Here</h3>
-                    <p>or click to browse your files</p>
-                    <p class="text-muted">Supported formats: MP4, AVI, MOV (Max: 500MB)</p>
-                </div>
-                
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Duration</th>
-                            <th>Category</th>
-                            <th>Uploaded</th>
-                            <th>Views</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% videos.forEach(video => { %>
-                        <tr>
-                            <td><%= video.title %></td>
-                            <td><%= video.duration %></td>
-                            <td><%= video.category %></td>
-                            <td><%= video.uploadDate %></td>
-                            <td><%= video.views %></td>
-                            <td class="action-cell">
-                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </section>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value"><%= stats.quizCount %></div>
+                <div class="stat-label">Quizzes</div>
+              </div>
+              <div class="stat-icon quizzes-icon">
+                <i class="fas fa-question-circle"></i>
+              </div>
+            </div>
+            <div><%= stats.quizCompletions %> completions this month</div>
+          </div>
 
-            <!-- Quiz Management Section -->
-            <section class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Quizzes & Interactive Content</h2>
-                    <button class="btn btn-primary">
-                        <i class="fas fa-plus"></i> Create New Quiz
-                    </button>
-                </div>
-                
-                <table class="content-table">
-                    <thead>
-                        <tr>
-                            <th>Quiz Title</th>
-                            <th>Questions</th>
-                            <th>Difficulty</th>
-                            <th>Completions</th>
-                            <th>Avg. Score</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% quizzes.forEach(quiz => { %>
-                        <tr>
-                            <td><%= quiz.title %></td>
-                            <td><%= quiz.questionCount %></td>
-                            <td><%= quiz.difficulty %></td>
-                            <td><%= quiz.completions %></td>
-                            <td><%= quiz.averageScore %>%</td>
-                            <td class="action-cell">
-                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
-                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </section>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-value"><%= stats.engagementRate %>%</div>
+                <div class="stat-label">Engagement Rate</div>
+              </div>
+              <div class="stat-icon engagement-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+            </div>
+            <div><%= stats.engagementChange %>% from last month</div>
+          </div>
+        </div>
 
-            <!-- Analytics Section -->
-            <section class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Content Engagement Analytics</h2>
-                    <select class="form-control" style="width: auto;">
-                        <option>Last 7 Days</option>
-                        <option>Last 30 Days</option>
-                        <option>Last 90 Days</option>
-                        <option>Custom Range</option>
-                    </select>
-                </div>
-                
-                <div class="chart-container">
-                    <!-- Chart would be rendered here with a charting library -->
-                    <img src="/api/placeholder/800/300" alt="Engagement Analytics Chart" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                
-                <table class="content-table" style="margin-top: 2rem;">
-                    <thead>
-                        <tr>
-                            <th>Content</th>
-                            <th>Type</th>
-                            <th>Views</th>
-                            <th>Avg. Time</th>
-                            <th>Completion Rate</th>
-                            <th>Engagement Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% topContent.forEach(content => { %>
-                        <tr>
-                            <td><%= content.title %></td>
-                            <td><%= content.type %></td>
-                            <td><%= content.views %></td>
-                            <td><%= content.avgTime %></td>
-                            <td><%= content.completionRate %>%</td>
-                            <td><%= content.engagementScore %></td>
-                        </tr>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+        <!-- Blog Management Section -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Blog Posts</h2>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i> Create New Post
+            </button>
+          </div>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Published Date</th>
+                <th>Views</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% blogPosts.forEach(post => { %>
+              <tr>
+                <td><%= post.title %></td>
+                <td><%= post.category %></td>
+                <td>
+                  <span
+                    class="status-pill status-<%= post.status.toLowerCase() %>"
+                  >
+                    <%= post.status %>
+                  </span>
+                </td>
+                <td><%= post.publishedDate || 'N/A' %></td>
+                <td><%= post.views %></td>
+                <td class="action-cell">
+                  <button class="action-btn edit-btn">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn delete-btn">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+
+          <div class="pagination">
+            <div class="page-item"><i class="fas fa-chevron-left"></i></div>
+            <div class="page-item active">1</div>
+            <div class="page-item">2</div>
+            <div class="page-item">3</div>
+            <div class="page-item"><i class="fas fa-chevron-right"></i></div>
+          </div>
+        </section>
+
+        <!-- Video Management Section -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Educational Videos</h2>
+            <button class="btn btn-primary">
+              <i class="fas fa-upload"></i> Upload New Video
+            </button>
+          </div>
+
+          <div class="upload-area" id="videoUpload">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <h3>Drag & Drop Videos Here</h3>
+            <p>or click to browse your files</p>
+            <p class="text-muted">
+              Supported formats: MP4, AVI, MOV (Max: 500MB)
+            </p>
+          </div>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Duration</th>
+                <th>Category</th>
+                <th>Uploaded</th>
+                <th>Views</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% videos.forEach(video => { %>
+              <tr>
+                <td><%= video.title %></td>
+                <td><%= video.duration %></td>
+                <td><%= video.category %></td>
+                <td><%= video.uploadDate %></td>
+                <td><%= video.views %></td>
+                <td class="action-cell">
+                  <button class="action-btn edit-btn">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn delete-btn">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Quiz Management Section -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Quizzes & Interactive Content</h2>
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i> Create New Quiz
+            </button>
+          </div>
+
+          <table class="content-table">
+            <thead>
+              <tr>
+                <th>Quiz Title</th>
+                <th>Questions</th>
+                <th>Difficulty</th>
+                <th>Completions</th>
+                <th>Avg. Score</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% quizzes.forEach(quiz => { %>
+              <tr>
+                <td><%= quiz.title %></td>
+                <td><%= quiz.questionCount %></td>
+                <td><%= quiz.difficulty %></td>
+                <td><%= quiz.completions %></td>
+                <td><%= quiz.averageScore %>%</td>
+                <td class="action-cell">
+                  <button class="action-btn edit-btn">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="action-btn delete-btn">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="content-section">
+          <div class="section-header">
+            <h2 class="section-title">Content Engagement Analytics</h2>
+            <select class="form-control" style="width: auto">
+              <option>Last 7 Days</option>
+              <option>Last 30 Days</option>
+              <option>Last 90 Days</option>
+              <option>Custom Range</option>
+            </select>
+          </div>
+
+          <div class="chart-container">
+            <!-- Chart would be rendered here with a charting library -->
+            <img
+              src="/api/placeholder/800/300"
+              alt="Engagement Analytics Chart"
+              style="
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+              "
+            />
+          </div>
+
+          <table class="content-table" style="margin-top: 2rem">
+            <thead>
+              <tr>
+                <th>Content</th>
+                <th>Type</th>
+                <th>Views</th>
+                <th>Avg. Time</th>
+                <th>Completion Rate</th>
+                <th>Engagement Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% topContent.forEach(content => { %>
+              <tr>
+                <td><%= content.title %></td>
+                <td><%= content.type %></td>
+                <td><%= content.views %></td>
+                <td><%= content.avgTime %></td>
+                <td><%= content.completionRate %>%</td>
+                <td><%= content.engagementScore %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </section>
+      </main>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle sidebar responsiveness
-            const toggleBtn = document.createElement('button');
-            toggleBtn.classList.add('btn', 'sidebar-toggle');
-            toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            
-            const header = document.querySelector('.header');
-            if (window.innerWidth < 768) {
-                header.prepend(toggleBtn);
-                document.querySelector('.sidebar').style.display = 'none';
-                
-                toggleBtn.addEventListener('click', function() {
-                    const sidebar = document.querySelector('.sidebar');
-                    sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-                });
+      document.addEventListener("DOMContentLoaded", function () {
+        // Handle sidebar responsiveness
+        const toggleBtn = document.createElement("button");
+        toggleBtn.classList.add("btn", "sidebar-toggle");
+        toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+
+        const header = document.querySelector(".header");
+        if (window.innerWidth < 768) {
+          header.prepend(toggleBtn);
+          document.querySelector(".sidebar").style.display = "none";
+
+          toggleBtn.addEventListener("click", function () {
+            const sidebar = document.querySelector(".sidebar");
+            sidebar.style.display =
+              sidebar.style.display === "none" ? "block" : "none";
+          });
+        }
+
+        // Upload area functionality
+        const uploadArea = document.getElementById("videoUpload");
+        if (uploadArea) {
+          uploadArea.addEventListener("click", function () {
+            const fileInput = document.createElement("input");
+            fileInput.type = "file";
+            fileInput.accept = "video/*";
+            fileInput.click();
+
+            fileInput.addEventListener("change", function (e) {
+              // Handle file selection
+              if (e.target.files.length > 0) {
+                const file = e.target.files[0];
+                uploadVideo(file); //call the function to upload the video
+              }
+            });
+          });
+        }
+      });
+
+      function uploadVideo(file) {
+        const formData = new FormData();
+        formData.append("video", file);
+
+        // You can modify the URL and method according to your backend endpoint
+        fetch("/upload-video", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Video uploaded successfully!");
+            } else {
+              alert("Upload failed!");
             }
-            
-            // Upload area functionality
-            const uploadArea = document.getElementById('videoUpload');
-            if (uploadArea) {
-                uploadArea.addEventListener('click', function() {
-                    const fileInput = document.createElement('input');
-                    fileInput.type = 'file';
-                    fileInput.accept = 'video/*';
-                    fileInput.click();
-                    
-                    fileInput.addEventListener('change', function(e) {
-                        // Handle file selection
-                        if (e.target.files.length > 0) {
-                            alert('File selected: ' + e.target.files[0].name);
-                            // Here you would typically upload the file via AJAX
-                        }
-                    });
-                });
-            }
-        });
+          })
+          .catch((error) => {
+            console.error("Error uploading video:", error);
+            alert("Error uploading video.");
+          });
+      }
     </script>
-</body>
+  </body>
 </html>
