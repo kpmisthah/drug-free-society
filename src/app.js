@@ -5,9 +5,9 @@ import cors from "cors"
 import path from 'path'
 import { fileURLToPath } from 'url';
 import session from "express-session"
-import userRouter from './routes/userRouter.js'
-import adminRouter from './routes/adminRouter.js'
-import videoRouter from './routes/video.js'
+import userRouter from './routes/user/userRouter.js'
+import adminRouter from './routes/admin/adminRouter.js'
+import videoRouter from './routes/admin/video.js'
 
 
 dotenv.config()

@@ -249,7 +249,7 @@
           <div class="chart-container">
             <!-- Chart would be rendered here with a charting library -->
             <img
-              src="/api/placeholder/800/300"
+              src=""
               alt="Engagement Analytics Chart"
               style="
                 width: 100%;
@@ -287,68 +287,6 @@
         </section>
       </main>
     </div>
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Handle sidebar responsiveness
-        const toggleBtn = document.createElement("button");
-        toggleBtn.classList.add("btn", "sidebar-toggle");
-        toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
-
-        const header = document.querySelector(".header");
-        if (window.innerWidth < 768) {
-          header.prepend(toggleBtn);
-          document.querySelector(".sidebar").style.display = "none";
-
-          toggleBtn.addEventListener("click", function () {
-            const sidebar = document.querySelector(".sidebar");
-            sidebar.style.display =
-              sidebar.style.display === "none" ? "block" : "none";
-          });
-        }
-
-        // Upload area functionality
-        const uploadArea = document.getElementById("videoUpload");
-        if (uploadArea) {
-          uploadArea.addEventListener("click", function () {
-            const fileInput = document.createElement("input");
-            fileInput.type = "file";
-            fileInput.accept = "video/*";
-            fileInput.click();
-
-            fileInput.addEventListener("change", function (e) {
-              // Handle file selection
-              if (e.target.files.length > 0) {
-                const file = e.target.files[0];
-                uploadVideo(file); //call the function to upload the video
-              }
-            });
-          });
-        }
-      });
-
-      function uploadVideo(file) {
-        const formData = new FormData();
-        formData.append("video", file);
-
-        // You can modify the URL and method according to your backend endpoint
-        fetch("/upload-video", {
-          method: "POST",
-          body: formData,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              alert("Video uploaded successfully!");
-            } else {
-              alert("Upload failed!");
-            }
-          })
-          .catch((error) => {
-            console.error("Error uploading video:", error);
-            alert("Error uploading video.");
-          });
-      }
-    </script>
+    <script src="/javascript/admin/education.js"></script>
   </body>
 </html>
