@@ -53,41 +53,55 @@
             </div>
         </div>
 
-        <!-- Videos Content -->
-        <div id="videos" class="tab-content">
-            <div class="grid md:grid-cols-2 gap-8">
-                <% videos.forEach(video => { %>
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <div class="aspect-w-16 aspect-h-9">
-                            <iframe src="<%= video.embedUrl %>" frameborder="0" allowfullscreen 
-                                class="w-full h-full"></iframe>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="text-lg font-semibold mb-2"><%= video.title %></h3>
-                            <p class="text-gray-600"><%= video.description %></p>
-                        </div>
-                    </div>
-                <% }); %>
-            </div>
+<!-- Videos Content -->
+<div id="videos" class="tab-content">
+    <div class="grid md:grid-cols-2 gap-8">
+      <% videos.forEach(video => { %>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="relative" style="padding-bottom: 56.25%;"> <!-- 56.25% = 9/16 for 16:9 aspect ratio -->
+            <iframe
+              src="<%= video.embedUrl %>"
+              frameborder="0"
+              allowfullscreen
+              class="absolute top-0 left-0 w-full h-full"
+            ></iframe>
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-2"><%= video.title %></h3>
+            <p class="text-gray-600"><%= video.description %></p>
+          </div>
         </div>
-
+      <% }); %>
+    </div>
+  </div>
         <!-- Quizzes Content -->
-        <div id="quizzes" class="tab-content">
-            <div class="max-w-2xl mx-auto">
-                <% quizzes.forEach(quiz => { %>
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                        <h3 class="text-xl font-semibold mb-4"><%= quiz.question %></h3>
-                        <div class="space-y-3">
-                            <% quiz.options.forEach((option, index) => { %>
-                                <button class="w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-gray-50">
-                                    <%= option %>
-                                </button>
-                            <% }); %>
-                        </div>
-                    </div>
-                <% }); %>
-            </div>
+<!-- Quizzes Content -->
+<div id="quizzes" class="tab-content">
+    <div class="max-w-2xl mx-auto">
+      <% quizzes.forEach((quiz, quizIndex) => { %>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-quiz-id="<%= quizIndex %>">
+          <h3 class="text-xl font-semibold mb-4"><%= quiz.question %></h3>
+          <div class="space-y-3">
+            <% quiz.options.forEach((option, optionIndex) => { %>
+              <button
+                class="w-full text-left p-4 rounded-lg border border-gray-200 hover:bg-gray-50 quiz-option"
+                data-quiz-id="<%= quizIndex %>"
+                data-option-index="<%= optionIndex %>"
+                data-correct="<%= quiz.correctAnswer === optionIndex ? 'true' : 'false' %>"
+                onclick="selectAnswer(this)"
+              >
+                <%= option %>
+              </button>
+            <% }); %>
+          </div>
+          <div class="mt-4 text-center feedback" style="display: none;"></div>
+          <button class="mt-4 w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 submit-quiz" onclick="submitQuiz(<%= quizIndex %>)">
+            Submit Answer
+          </button>
         </div>
+      <% }); %>
+    </div>
+  </div>
 
         <!-- Infographics Content -->
         <div id="infographics" class="tab-content">

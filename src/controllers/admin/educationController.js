@@ -1,7 +1,6 @@
 const loadEducation = async(req,res)=>{
     try {
         
-// Dummy data for stats and content
 const stats = {
     blogCount: 120,
     publishedBlogs: 100,
