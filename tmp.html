@@ -1,28 +1,4 @@
 
-//     while (retries < MAX_RETRIES) {
-//       try {
-//         const chunkStream = fs.createReadStream(chunkPath);
-//         await new Promise((resolve, reject) => {
-//           chunkStream.pipe(writeStream, { end: false });
-//           chunkStream.on('end', resolve);
-//           chunkStream.on('error', reject);
-//         });
-//         console.log(`Chunk ${i} merged successfully`);
-//         await fs.promises.unlink(chunkPath);
-//         console.log(`Chunk ${i} deleted successfully`);
-//         break; // Success, move to next chunk
-//       } catch (error) {
-//         if (error.code === 'EBUSY') {
-//           console.log(
-//             `Chunk ${i} is busy, retrying... (${retries + 1}/${MAX_RETRIES})`
-//           );
-//           await delay(RETRY_DELAY);
-//           retries++;
-//         } else {
-//           throw error; // Unexpected error, rethrow
-//         }
-//       }
-//     }
 
 //     if (retries === MAX_RETRIES) {
 //       console.error(`Failed to merge chunk ${i} after ${MAX_RETRIES} retries`);
