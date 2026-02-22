@@ -1,46 +1,4 @@
 
-// // Here, we’re importing necessary modules and setting up our file 
-// // paths. We use fs-extra, an enhanced file system module, to create our 
-// // upload directories if they don't exist. We define two paths:
-// await fs.mkdir(uploadPath, { recursive: true });
-// await fs.mkdir(uploadPathChunks, { recursive: true });
-// export default router
-
-// //.............................
-// //Configuring Multer for File Uploads
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, uploadPathChunks);
-//     },
-//     filename: (req, file, cb) => {
-//       const baseFileName = file.originalname.replace(/\s+/g, '');
-  
-//       fs.readdir(uploadPathChunks, (err, files) => {
-//         if (err) {
-//           return cb(err);
-//         }
-  
-//         // Filter files that match the base filename
-//         const matchingFiles = files.filter((f) => f.startsWith(baseFileName));
-  
-//         let chunkNumber = 0;
-//         if (matchingFiles.length > 0) {
-//           // Extract the highest chunk number
-//           const highestChunk = Math.max(
-//             ...matchingFiles.map((f) => {
-//               const match = f.match(/\.part_(\d+)$/);
-//               return match ? parseInt(match[1], 10) : -1;
-//             })
-//           );
-//           chunkNumber = highestChunk + 1;
-//         }
-  
-//         const fileName = `${baseFileName}.part_${chunkNumber}`;
-//         cb(null, fileName);
-//       });
-//     },
-//   });
-  
 //   const upload = multer({
 //     storage: storage,
 //     limits: { fileSize: 500 * 1024 * 1024 }, // 500MB limit
